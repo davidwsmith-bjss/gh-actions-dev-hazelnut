@@ -5,7 +5,7 @@ name: Connect to an AWS role from a GitHub repository
 on:
   push:
     branches:
-      - oak-spey
+      - main
 
 # Permission can be added at job level or workflow level
 permissions:
