@@ -1,4 +1,4 @@
-name: deploy-test
+name: odic-iadeploy-test
 on:
   push:
     branches:
