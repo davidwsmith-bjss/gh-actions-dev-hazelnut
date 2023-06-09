@@ -5,11 +5,22 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set-up node
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
       - run: npm install -g bats
       - run: bats -v
       - run: whoami
       - run: ps -ef
+    run-cdk-commands:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Install dependencies
+         - run: yarn install --frozen-lockfile
+         - name: CKD synth
+         - run: npx cdk synth --app "npx ts-node src/main.ts" --output "cdk.out"
+         - name: CDK deploy
+         - run: npx cdk deploy --all --app "cdk.out" --require-approval never
