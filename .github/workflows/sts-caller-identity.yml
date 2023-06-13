@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: CDK synth
-        run: npx cdk synth --app "npx ts-node src/main.ts" --output "cdk.out"
+        run: npx cdk synth --app "npx ts-node src/odic.ts" --output "cdk.out"
       - name: CDK deploy
         run: npx cdk deploy --all --app "cdk.out" --require-approval never
       # Hello from AWS: WhoAmI
