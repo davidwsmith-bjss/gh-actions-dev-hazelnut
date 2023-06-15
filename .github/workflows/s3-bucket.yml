@@ -26,3 +26,9 @@ jobs:
       - name:  Copy index.html to s3
         run: |
           aws s3 cp ./index.html s3://${{ env.BUCKET_NAME }}/
+      # Add linting
+      - name: Lint Code Base
+        uses: github/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
