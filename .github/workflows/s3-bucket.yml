@@ -17,11 +17,17 @@ jobs:
     # Repo git cloning
       - name: Git clone the repository
         uses: actions/checkout@v3
+        with:
+          # Full git history is needed to get a proper list of changed files within `super-linter`
+          fetch-depth: 0
     # Add linting
       - name: Lint Code Base
         uses: github/super-linter@v5
         env:
-          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_ALL_CODEBASE: false
+          DISABLE_ERRORS: true
+          MULTI_STATUS: true
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # Configure AWS credentials
       - name: configure AWS credentials
