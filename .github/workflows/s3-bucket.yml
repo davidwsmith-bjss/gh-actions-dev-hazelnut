@@ -26,7 +26,6 @@ jobs:
         env:
           VALIDATE_ALL_CODEBASE: false
           DISABLE_ERRORS: true
-          MULTI_STATUS: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     # Configure AWS credentials
