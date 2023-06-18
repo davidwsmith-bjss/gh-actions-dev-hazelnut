@@ -35,9 +35,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
          node-version: 20
-      - name: Install all dependencies
-        run: npm install
-      - name: Run Jest Tests
         run: npm run test
       # Configure AWS credentials
       - name: configure AWS credentials
