@@ -35,6 +35,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
          node-version: 20
+      - name: Run NPM test
         run: npm run test
       # Configure AWS credentials
       - name: configure AWS credentials
