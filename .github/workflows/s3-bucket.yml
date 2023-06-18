@@ -30,7 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Initialise CodeQL
       - name: initialise CodeQL
-        uses: github/codeql-action/init@v2.13.3
+        uses: github/codeql-action/init@v2
         with:
           languages: typescript
       # Perform code analysis
