@@ -28,7 +28,15 @@ jobs:
           DISABLE_ERRORS: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    # Configure AWS credentials
+      # Initialise CodeQL
+      - name: initialise CodeQL
+        uses: github/codeql-action/init@v2.13.3
+        with:
+          languages: typescript
+      # Perform code analysis
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+      # Configure AWS credentials
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2.1.0
         with:
