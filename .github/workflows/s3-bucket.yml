@@ -30,22 +30,15 @@ jobs:
           DISABLE_ERRORS: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    # Initializes the CodeQL tools for scanning.
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v2
-        # Override language selection by uncommenting this and choosing your languages
+    # Jest Automatic Testing
+      - name: Jest Automatic Testing
+        uses: actions/setup-node@v1
         with:
-         languages: javascript
-      # ✏️ If the Autobuild fails above, remove it and uncomment the following
-      #    three lines and modify them (or add more) to build your code if your
-      #    project uses a compiled language
-
-      #- run: |
-      #     make bootstrap
-      #     make release
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v2
+         node-version: 20
+      - name: Install all dependencies
+        run: npm install
+      - name: Run Jest Tests
+        run: npm run test
       # Configure AWS credentials
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2.1.0
