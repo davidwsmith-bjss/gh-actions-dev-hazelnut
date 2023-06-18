@@ -10,6 +10,8 @@ env:
 permissions:
   id-token: write   # This is required for requesting the ODIC JSON web token (JWT)
   contents: read    # This is required for actions/checkout
+  security-events: write
+  actions: read
 jobs:
   S3PackageUpload:
     runs-on: ubuntu-latest
@@ -28,12 +30,20 @@ jobs:
           DISABLE_ERRORS: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # Initialise CodeQL
-      - name: initialise CodeQL
+    # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
+        # Override language selection by uncommenting this and choosing your languages
         with:
-          languages: typescript
-      # Perform code analysis
+         languages: javascript
+      # ✏️ If the Autobuild fails above, remove it and uncomment the following
+      #    three lines and modify them (or add more) to build your code if your
+      #    project uses a compiled language
+
+      #- run: |
+      #     make bootstrap
+      #     make release
+
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
       # Configure AWS credentials
@@ -47,3 +57,4 @@ jobs:
       - name:  Copy index.html to s3
         run: |
           aws s3 cp ./index.html s3://${{ env.BUCKET_NAME }}/
+        
