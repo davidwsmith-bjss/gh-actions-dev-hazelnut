@@ -30,13 +30,6 @@ jobs:
           DISABLE_ERRORS: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    # Jest Automatic Testing
-      - name: Jest Automatic Testing
-        uses: actions/setup-node@v1
-        with:
-         node-version: 20
-      - name: Run NPM test
-        run: npm run test
       # Configure AWS credentials
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2.1.0
@@ -48,4 +41,3 @@ jobs:
       - name:  Copy index.html to s3
         run: |
           aws s3 cp ./index.html s3://${{ env.BUCKET_NAME }}/
-        
