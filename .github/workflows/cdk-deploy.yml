@@ -40,8 +40,8 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Synth stack
-        run: cdk synth
+        run: cdk --app 'executable' synth
 
       - name: Deploy stack
 #        run: cdk deploy --all --require-approval never
-        run: cdk diff--require-approval never
+        run: cdk --app diff --require-approval never
