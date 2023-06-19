@@ -38,8 +38,7 @@ jobs:
           role-session-name: odic-s3-bucket
           aws-region: ${{ env.AWS_REGION }}
       - name: cdk diff
-        run: |
-          cdk_subcommand: 'diff'
+        run: cdk diff
       # Upload a file to AWS s3
       - name:  Copy index.html to s3
         run: |
