@@ -44,4 +44,4 @@ jobs:
 
       - name: Deploy stack
 #        run: cdk deploy --all --require-approval never
-        run: cdk --app diff --require-approval never
+        run: cdk --app "npx ts-node bin/helloworld.ts"a
