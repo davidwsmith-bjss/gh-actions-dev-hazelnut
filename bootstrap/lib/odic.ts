@@ -41,6 +41,7 @@ export class GitHubStack extends cdk.Stack {
         const conditions: iam.Conditions = {
             StringLike: {
                 [`${githubDomain}:sub`]: iamRepoDeployAccess,
+                [`${githubDomain}:aud`]: 'sts.amazonaws.com',
             },
         };
 

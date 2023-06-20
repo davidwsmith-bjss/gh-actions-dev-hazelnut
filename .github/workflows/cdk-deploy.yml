@@ -41,5 +41,5 @@ jobs:
 
       - name: Deploy stack
 #        run: cdk deploy --all --require-approval never
-        run: cdk synth
+        run: cdk deploy --app="ts-node ${PWD}/cdk/my_service/app.py" --require-approval=never
         working-directory: bootstrap
