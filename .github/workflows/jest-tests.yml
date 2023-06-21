@@ -4,6 +4,7 @@ on:
 jobs:
   report:
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - uses: dorny/test-reporter@v1
         with:
