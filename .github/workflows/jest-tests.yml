@@ -2,9 +2,9 @@ name: 'Test Report'
 on:
   push
 permissions:
-   contents: 'read'
-   id-token: 'write'
-   issues: 'write'
+  id-token: write
+  contents: read
+  actions: read
 jobs:
   report:
     runs-on: ubuntu-latest
