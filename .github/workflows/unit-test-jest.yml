@@ -13,32 +13,26 @@ jobs:
     name: Build & Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3     # checkout the repo
+      - uses: actions/checkout@v3
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
           python-version: "3.9"
-
       - name: Set Node.js 18.0.0
         uses: actions/setup-node@v3
         with:
           node-version: "18.0.0"
-
       - name: Install Python Dependencies
-        with:
-          python-version: "3.9"
         run: |
           python -m pip install --upgrade pip
           pip install pipenv
           cd lambdas && pipenv install --dev
-
       - name: Install Node Dependencies
         run: |
           echo "@myscope:registry=${{ env.NPM_ARTIFACTORY_URL }}/npm" > .npmrc
           echo "//${{ env.JFROG_NPM }}/npm/:$(curl -u "${{ env.ARTIFACTORY_USERNAME }}:${{ env.NPM_ARTIFACTORY_ACCESSTOKEN }}" https://${{ env.JFROG_NPM }}/auth/)" >> .npmrc
           npm ci
           npm test                 # run tests (configured to use jest-junit reporter)
-
       - name: Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()    # run this step even if previous step failed
