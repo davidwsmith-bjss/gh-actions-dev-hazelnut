@@ -1,13 +1,13 @@
 name: 'Test Report'
 on:
   push
+permissions:
+   contents: 'read'
+   id-token: 'write'
+   issues: 'write'
 jobs:
   report:
     runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-      issues: 'write'
     steps:
       - uses: dorny/test-reporter@v1
         with:
