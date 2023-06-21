@@ -29,7 +29,7 @@ jobs:
           pipenv install --dev
       - name: Install Node Dependencies
         run: |
-          echo "@myscope:registry=${{ env.NPM_ARTIFACTORY_URL }}/npm" > .npmrc
+          echo "@metoffice:registry=${{ env.NPM_ARTIFACTORY_URL }}/npm" > .npmrc
           echo "//${{ env.JFROG_NPM }}/npm/:$(curl -u "${{ env.ARTIFACTORY_USERNAME }}:${{ env.NPM_ARTIFACTORY_ACCESSTOKEN }}" https://${{ env.JFROG_NPM }}/auth/)" >> .npmrc
           npm ci
           npm test                 # run tests (configured to use jest-junit reporter)
