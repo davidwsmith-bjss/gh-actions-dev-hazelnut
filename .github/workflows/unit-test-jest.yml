@@ -31,7 +31,6 @@ jobs:
         run: |
           echo "@myscope:registry=${{ env.NPM_ARTIFACTORY_URL }}/npm" > .npmrc
           echo "//${{ env.JFROG_NPM }}/npm/:$(curl -u "${{ env.ARTIFACTORY_USERNAME }}:${{ env.NPM_ARTIFACTORY_ACCESSTOKEN }}" https://${{ env.JFROG_NPM }}/auth/)" >> .npmrc
-          npm login
           npm ci
           npm test                 # run tests (configured to use jest-junit reporter)
       - name: Test Report
