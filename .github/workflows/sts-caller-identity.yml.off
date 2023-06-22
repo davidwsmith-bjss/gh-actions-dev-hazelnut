@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   deploy:
-    name: Deploy CDK stacks to test
+    name: Deploy CDK stacks
     runs-on: ubuntu-latest
     permissions:
       actions: write

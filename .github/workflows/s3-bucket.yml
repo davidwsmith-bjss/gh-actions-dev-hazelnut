@@ -1,3 +1,4 @@
+---
 # Sample workflow to access AWS resources when workflow is tied to branch
 # The workflow Creates static website using aws s3
 name: Linting and Uploading file to S3 bucket
@@ -6,7 +7,7 @@ on:
 env:
   BUCKET_NAME : "cdk-hnb659fds-assets-679289103098-eu-west-2"
   AWS_REGION : "eu-west-2"
-# permission can be added at job level or workflow level
+# permission can be added at job or workflow level
 permissions:
   id-token: write   # This is required for requesting the ODIC JSON web token (JWT)
   contents: read    # This is required for actions/checkout
