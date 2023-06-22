@@ -29,8 +29,11 @@ jobs:
           pipenv install --dev
       - name: Install Node Dependencies
         run: |
-          echo "@metoffice:registry=${{ env.NPM_ARTIFACTORY_URL }}/npm" > .npmrc
-          echo "//${{ env.JFROG_NPM }}/npm/:$(curl -u "${{ env.ARTIFACTORY_USERNAME }}:${{ env.NPM_ARTIFACTORY_ACCESSTOKEN }}" https://${{ env.JFROG_NPM }}/auth/)" >> .npmrc
+          token=$(echo "$(curl -u "${{ env.ARTIFACTORY_USERNAME }}:${{ env.ARTIFACTORY_ACCESSTOKEN }}" https://${{ env.JFROG_NPM }}/auth/)" | head -1 | awk '{print $3}')
+          npm config set //${{ env.JFROG_NPM }}/:_auth $token
+          npm config set strict-ssl false
+          npm config set email ${{ env.ARTIFACTORY_USERNAME }}@metoffice.gov.uk
+          npm config set registry https://${{ env.JFROG_NPM }}/npm
           npm ci
           npm test                 # run tests (configured to use jest-junit reporter)
       - name: Test Report
