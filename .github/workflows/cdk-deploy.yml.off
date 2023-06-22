@@ -19,17 +19,14 @@ jobs:
         with:
           fetch-depth: 2
 
-#      - name: Setup Node.js environment
-#        uses: actions/setup-node@v2.5.2
-#        with:
-#          node-version: 20
-#          cache: "npm"
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.2
+        with:
+          node-version: 20
+          cache: "npm"
 
-#      - name: Install dependencies
-#        run: npm install
-
-      - name: Install AWS CDK
-        run: npm i -g aws-cdk
+#      - name: Install AWS CDK
+#        run: npm i -g aws-cdk
 
       # Configure AWS credentials
       - name: configure AWS credentials
@@ -39,7 +36,9 @@ jobs:
           role-session-name: odic-s3-bucket
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Install dependencies
+        run: yarn
+      - name: Synth stack
+        run: yarn cdk synth
       - name: Deploy stack
-#        run: cdk deploy --all --require-approval never
-        run: cdk deploy --app="ts-node ${PWD}/cdk/my_service/app.py" --require-approval=never
-        working-directory: bootstrap
+        run: yarn cdk deploy --all --require-approval never
