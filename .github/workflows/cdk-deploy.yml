@@ -23,10 +23,9 @@ jobs:
         uses: actions/setup-node@v2.5.2
         with:
           node-version: 20
-          cache: "npm"
 
-#      - name: Install AWS CDK
-#        run: npm i -g aws-cdk
+      - name: Install AWS CDK
+        run: npm i -g aws-cdk
 
       # Configure AWS credentials
       - name: configure AWS credentials
