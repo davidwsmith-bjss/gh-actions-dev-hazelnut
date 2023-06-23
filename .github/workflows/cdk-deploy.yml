@@ -40,4 +40,4 @@ jobs:
       - name: cdk diff
         run: |
          pwd
-         cdk diff --app "ts-node ../../bootstrap/lib/"
+         cdk diff --app "ts-node bootstrap/lib/helloworld.ts"
