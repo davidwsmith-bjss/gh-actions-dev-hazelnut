@@ -36,6 +36,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: cdk diff
-        uses: youyo/aws-cdk-github-actions@v2
-        with:
-         cdk_subcommand: 'diff'
+        run: cdk diff --app "ts-node ./lib/helloworld.ts"
