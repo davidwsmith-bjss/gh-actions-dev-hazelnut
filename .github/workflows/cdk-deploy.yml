@@ -19,10 +19,10 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.5.2
-        with:
-          node-version: 18.0.0
+ #     - name: Setup Node.js environment
+ #       uses: actions/setup-node@v2.5.2
+ #       with:
+ #         node-version: 18.0.0
 
       - name: Install AWS CDK
         run: npm i -g aws-cdk
