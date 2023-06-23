@@ -38,4 +38,6 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: cdk diff
-        run: cdk diff --app "ts-node ../../bootstrap/lib/"
+        run: |
+         pwd
+         cdk diff --app "ts-node ../../bootstrap/lib/"
