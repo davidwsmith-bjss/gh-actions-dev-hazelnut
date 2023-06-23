@@ -37,7 +37,7 @@ jobs:
           role-session-name: odic-s3-bucket
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: cdk diff
+      - name: cdk deploy
         run: |
          pwd
-         cdk diff --app "ts-node bootstrap/lib/helloworld.ts"
+         cdk deploy --app "ts-node bootstrap/lib/helloworld.ts"
