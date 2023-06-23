@@ -40,4 +40,4 @@ jobs:
       - name: cdk deploy
         run: |
          pwd
-         cdk deploy --verbose i--app "ts-node bootstrap/lib/helloworld.ts"
+         cdk deploy --verbose --app "ts-node bootstrap/lib/helloworld.ts"
