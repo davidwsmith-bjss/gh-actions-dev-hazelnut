@@ -28,7 +28,6 @@ jobs:
         run: |
          npm i -g aws-cdk
          npm i -g ts-node
-        
 
       # Configure AWS credentials
       - name: configure AWS credentials
@@ -39,4 +38,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: cdk diff
-        run: cdk diff --app "ts-node ./lib/helloworld.ts"
+        run: cdk diff --app "ts-node lib/helloworld.ts"
