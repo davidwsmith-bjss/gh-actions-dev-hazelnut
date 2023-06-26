@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
+import { App } from "aws-cdk-lib";
 
 export interface GitHubStackProps extends cdk.StackProps {
     /**
@@ -24,6 +25,7 @@ export interface GitHubStackProps extends cdk.StackProps {
 }
 
 export class GitHubStack extends cdk.Stack {
+    private category: string;
     constructor(scope: Construct, id: string, props: GitHubStackProps) {
         super(scope, id, props);
 
