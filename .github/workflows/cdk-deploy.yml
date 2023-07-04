@@ -1,0 +1,44 @@
+name: CDK Deploy
+
+on:
+  push:
+env:
+  AWS_REGION: "eu-west-2"
+  AWS_ACCOUNT_DEV: "679289103098"
+# permission can be added at job level or workflow level
+permissions:
+  id-token: write # This is required for requesting the ODIC JSON web token (JWT)
+  contents: read # This is required for actions/checkout
+  security-events: write
+  actions: read
+jobs:
+  aws_cdk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      # Configure AWS credentials
+      - name: configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2.2.0
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_DEV }}:role/ODICGitHubDeployRole
+          role-session-name: odic-github-actions
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Install CDK
+      - name: install CDK
+        run: |
+          npm install -g aws-cdk
+
+      # Install typescript and ts-node
+      - name: install typescript and ts-node
+        run: |
+          npm install -g ts-node typescript
+
+      - name: cdk deploy
+        run: |
+          cdk synth --verbose --app "npx ts-node cdk/bin/hello-world.ts" hello-world
+        # cdk deploy --verbose --app "ts-node cdk/bin/hello-world.ts"
