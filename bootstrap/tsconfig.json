@@ -22,7 +22,8 @@
     "strictPropertyInitialization": false,
     "typeRoots": [
       "./node_modules/@types"
-    ]
+    ],
+    "outdir": "bootstrap/cdk.out",
   },
   "exclude": [
     "node_modules",
