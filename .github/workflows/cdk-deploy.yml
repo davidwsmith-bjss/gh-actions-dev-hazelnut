@@ -41,5 +41,4 @@ jobs:
 
       - name: cdk deploy
         run: |
-         # cdk synth --verbose --app "npx ts-node bootstrap/bin/helloworld.ts"
           cdk deploy --verbose --app "ts-node bootstrap/bin/helloworld.ts"
