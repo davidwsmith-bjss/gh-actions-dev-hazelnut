@@ -5,7 +5,7 @@ on:
 env:
   AWS_REGION: "eu-west-2"
   AWS_ACCOUNT_DEV: "679289103098"
-  CDK_OUTDIR: "bootstrap/cdk.out"
+  #CDK_OUTDIR: "cdk.out"
 # permission can be added at job level or workflow level
 permissions:
   id-token: write # This is required for requesting the ODIC JSON web token (JWT)
@@ -41,5 +41,5 @@ jobs:
 
       - name: cdk deploy
         run: |
-          cdk synth --verbose --app "npx ts-node bootstrap/bin/helloworld.ts"
+         # cdk synth --verbose --app "npx ts-node bootstrap/bin/helloworld.ts"
           cdk deploy --verbose --app "ts-node bootstrap/bin/helloworld.ts"
