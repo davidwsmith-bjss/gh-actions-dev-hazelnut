@@ -1,0 +1,37 @@
+# https://dev.to/erdenezayaa/how-to-set-up-a-simple-cicd-for-aws-cdk-projects-1aj3
+import { Stack, StackProps } from 'aws-cdk-lib';
+import { Construct } from 'constructs';
+import { CodePipeline, CodePipelineSource, CodeBuildStep } from 'aws-cdk-lib/pipelines';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import { ComputeType } from 'aws-cdk-lib/aws-codebuild';
+
+    export class CodePipelineStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
+                       super(scope, id, props);
+
+                       const pipeline = new CodePipeline(this, 'Pipeline', {
+                                    pipelineName: 'CorePipeline',
+                                    selfMutation: false,
+                                    synth: new CodeBuildStep('DeploymentStep', {
+                                      input: CodePipelineSource.gitHub('OWNER/REPO', 'branch_name'),
+                                      commands: [
+                                        'npm ci',
+                                        'npx cdk synth',
+                                        'npm run deploy-ci'
+                                      ],
+                                      buildEnvironment: {
+                                        computeType: ComputeType.LARGE,
+                                      },
+                                      rolePolicyStatements: [
+                                        new iam.PolicyStatement({
+                                          effect: iam.Effect.ALLOW,
+                                          actions: ['*'],
+                                          resources: ['*'],
+                                        }),
+                                      ],
+                     })
+                       });
+
+  }
+  }
+
