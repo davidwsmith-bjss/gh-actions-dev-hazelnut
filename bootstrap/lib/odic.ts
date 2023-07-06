@@ -63,8 +63,8 @@ const app = new cdk.App();
 new GitHubStack(app, 'dsmithGitHubOpenIDConnect', {
     deployRole: 'OIDCGitHubDeployRole',
     repositoryConfig: [
-        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'refs/heads/origin/SWN-300-github-actions' },
-        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-hazelnut', filter: 'refs/heads/main' },
+        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-hazelnut', filter: 'refs/heads/origin/SWN-300-github-actions' },
+        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'refs/heads/main' },
     ],
 });
 

@@ -1,16 +1,13 @@
 name: CDK Deploy
 
-on:
-  push:
-    branches:
-      - SWN-300-github-actions
+on: push
 env:
   AWS_REGION: "eu-west-2"
   AWS_ACCOUNT_DEV: "679289103098"
   CDK_OUTDIR: "bootstrap/cdk.out"
 # permission can be added at job level or workflow level
 permissions:
-  id-token: write # This is required for requesting the ODIC JSON web token (JWT)
+  id-token: write # This is required for requesting the OIDC JSON web token (JWT)
   contents: read # This is required for actions/checkout
   security-events: write
   actions: read
@@ -31,8 +28,8 @@ jobs:
           role-session-name: oidc-github-actions
           aws-region: ${{ env.AWS_REGION }}
 
-      # Install CDK, typescript, and ts-node
-      - name: install typescript and ts-node
+      # Install cdk, typescript, and ts-node
+      - name: install cdk, typescript, and ts-node
         run: |
           npm install -g aws-cdk ts-node typescript
 
