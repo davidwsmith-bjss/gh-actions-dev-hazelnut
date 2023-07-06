@@ -1,7 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
-import { App } from "aws-cdk-lib";
 
 export interface GitHubStackProps extends cdk.StackProps {
     /**
@@ -62,9 +61,9 @@ export class GitHubStack extends cdk.Stack {
 
 const app = new cdk.App();
 new GitHubStack(app, 'dsmithGitHubOpenIDConnect', {
-    deployRole: 'ODICGitHubDeployRole',
+    deployRole: 'OIDCGitHubDeployRole',
     repositoryConfig: [
-        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'refs/heads/SWN-300-github-actions' },
+        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'refs/heads/origin/SWN-300-github-actions' },
         { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-hazelnut', filter: 'refs/heads/main' },
     ],
 });
