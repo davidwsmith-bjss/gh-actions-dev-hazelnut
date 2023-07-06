@@ -2,6 +2,8 @@ name: CDK Deploy
 
 on:
   push:
+    branches:
+      - SWN-300-github-actions
 env:
   AWS_REGION: "eu-west-2"
   AWS_ACCOUNT_DEV: "679289103098"
