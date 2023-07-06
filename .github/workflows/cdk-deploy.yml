@@ -2,8 +2,13 @@ name: CDK Deploy; Repository Dispatch Receiver
 
 on:
   push:
+<<<<<<< HEAD
   repository_dispatch:
 
+=======
+    branches:
+      - SWN-300-github-actions
+>>>>>>> 6e2b331 (push to branch SWN-300-github-actions)
 env:
   AWS_REGION: "eu-west-2"
   GREENFIELD_AWS_ACCOUNT: "679289103098"
