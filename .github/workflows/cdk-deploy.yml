@@ -58,12 +58,21 @@ jobs:
           role-session-name: odic-github
           aws-region: ${{ env.AWS_REGION }}
 
+<<<<<<< HEAD
       # Install cdk
       - name: install cdk
         run: |
           npm install -g cdk@^2.87.0 --include=dev --verbose
 
       # CDK deploy
+=======
+      # Install CDK, typescript and ts-node
+      - name: install typescript and ts-node
+        run: |
+          npm install -g aws-cdk ts-node typescript
+
+      # dk deploy
+>>>>>>> eceeb03 (cdk.our folder under bootstrap folder; changes installs to:)
       - name: cdk deploy
         run: |
           cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/s3-bucket.ts" --require-approval never

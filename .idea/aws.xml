@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="accountSettings">
+<<<<<<< HEAD
     <option name="activeProfile" value="profile:441258556278_AdministratorAccess" />
     <option name="activeRegion" value="eu-west-2" />
     <option name="recentlyUsedProfiles">
       <list>
         <option value="profile:441258556278_AdministratorAccess" />
         <option value="profile:blue-poppy" />
+=======
+    <option name="activeProfile" value="profile:blue-poppy" />
+    <option name="activeRegion" value="eu-west-2" />
+    <option name="recentlyUsedProfiles">
+      <list>
+        <option value="profile:blue-poppy" />
+        <option value="profile:441258556278_AdministratorAccess" />
+>>>>>>> eceeb03 (cdk.our folder under bootstrap folder; changes installs to:)
         <option value="profile:swx-dev-admin" />
       </list>
     </option>
@@ -16,5 +25,8 @@
         <option value="us-east-1" />
       </list>
     </option>
+  </component>
+  <component name="connectionManager">
+    <option name="activeConnectionId" value="AwsConnectionManagerConnection" />
   </component>
 </project>
