@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="accountSettings">
-    <option name="activeProfile" value="profile:swx-dev-admin" />
+    <option name="activeProfile" value="profile:blue-poppy" />
     <option name="activeRegion" value="eu-west-2" />
     <option name="recentlyUsedProfiles">
       <list>
-        <option value="profile:swx-dev-admin" />
+        <option value="profile:blue-poppy" />
         <option value="profile:441258556278_AdministratorAccess" />
+        <option value="profile:swx-dev-admin" />
       </list>
     </option>
     <option name="recentlyUsedRegions">
@@ -15,5 +16,8 @@
         <option value="us-east-1" />
       </list>
     </option>
+  </component>
+  <component name="connectionManager">
+    <option name="activeConnectionId" value="AwsConnectionManagerConnection" />
   </component>
 </project>

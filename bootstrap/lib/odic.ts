@@ -64,8 +64,15 @@ const app = new cdk.App();
 new GitHubStack(app, 'dsmithGitHubOpenIDConnect', {
     deployRole: 'ODICGitHubDeployRole',
     repositoryConfig: [
-        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'refs/heads/main' },
+        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'refs/heads/SWN-300-github-actions' },
         { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-hazelnut', filter: 'refs/heads/main' },
     ],
 });
+
+/**
+ * "The Cloud Assembly is the output of the synthesis operation. It is produced as part of the cdk synth command,
+ * or the app.synth() method invocation."
+ * "The Cloud Assembly is the output of the synthesis operation. It is produced as part of the cdk synth command,
+ * or the app.synth() method invocation."
+ */
 app.synth();
