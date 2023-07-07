@@ -29,15 +29,10 @@ jobs:
           role-session-name: odic-github
           aws-region: ${{ env.AWS_REGION }}
 
-      # Install CDK
-      - name: install CDK
+      # Install cdk, typescript, and ts-node
+      - name: install cdk, typescript, and ts-node
         run: |
-          npm install -g aws-cdk
-
-      # Install typescript and ts-node
-      - name: install typescript and ts-node
-        run: |
-          npm install -g ts-node typescript
+          npm install -g cdk ts-node typescript
 
       - name: cdk deploy
         run: |
