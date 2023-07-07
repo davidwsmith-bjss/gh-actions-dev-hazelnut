@@ -5,7 +5,7 @@ on:
 env:
   AWS_REGION: "eu-west-2"
   AWS_ACCOUNT_DEV: "679289103098"
-  CDK_OUTDIR: "bootstrap/cdk.out"
+#  CDK_OUTDIR: "bootstrap/cdk.out"
 # permission can be added at job level or workflow level
 permissions:
   id-token: write # This is required for requesting the ODIC JSON web token (JWT)
@@ -19,14 +19,14 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       # Configure AWS credentials
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2.2.0
         with:
           role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_DEV }}:role/ODICGitHubDeployRole
-          role-session-name: odic-github-actions
+          role-session-name: odic-github
           aws-region: ${{ env.AWS_REGION }}
 
       # Install CDK
