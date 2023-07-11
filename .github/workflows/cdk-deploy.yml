@@ -39,5 +39,6 @@ jobs:
 
       - name: cdk deploy
         run: |
+          cd ${{ env.CDK_OUTDIR }}
           echo "The current directory is $GITHUB_WORKSPACE"
           cdk deploy --verbose --app "ts-node bootstrap/bin/helloworld.ts"
