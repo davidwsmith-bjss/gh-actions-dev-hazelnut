@@ -48,7 +48,7 @@ jobs:
  #       run: |
  #         cdk deploy --verbose --app ./bootstrap/cdk.out --require-approval never
       - name: cdk deploy
-        working-directory: /Users/david.smith/WebstormProjects/gh-actions-dev-hazelnut/bootstrap
+        working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
         run: |
           echo "The current directory is $PWD"
           cdk deploy --verbose --app "ts-node bootstrap/bin/helloworld.ts" ls
