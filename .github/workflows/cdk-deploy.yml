@@ -39,12 +39,16 @@ jobs:
         run: |
           npm install -g cdk ts-node typescript
 
-      - name: cdk deploy
-        uses: youyo/aws-cdk-github-actions@v2.1.4
-        with:
-          cdk_subcommand: 'deploy'
+      - name: Synth CDK
+        run: |
+          cdk synth --verbose \
+          --app "ts-node bootstrap/bin/helloworld.ts" 
+          --output ./bootstrap/cdk.out
 
-    #  - name: cdk deploy
+      - name: Deploy CDK
+        run: |
+          cdk deploy --app ./bootstrap/cdk.out --require-approval never
+#  - name: cdk deploy
     #    working-directory: /Users/david.smith/WebstormProjects/gh-actions-dev-hazelnut/bootstrap
     #    run: |
     #      echo "The current directory is $PWD"
