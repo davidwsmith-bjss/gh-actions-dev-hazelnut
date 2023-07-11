@@ -5,7 +5,6 @@ on:
 env:
   AWS_REGION: "eu-west-2"
   AWS_ACCOUNT_DEV: "679289103098"
-  CDK_OUTDIR: "cdk.out"
 # permission can be added at job level or workflow level
 permissions:
   id-token: write # This is required for requesting the ODIC JSON web token (JWT)
