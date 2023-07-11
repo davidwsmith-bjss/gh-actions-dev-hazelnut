@@ -17,7 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print current directory
-        run: echo "The current directory is $GITHUB_WORKSPACE"
+        run: |
+          echo "The current directory is $GITHUB_WORKSPACE"
+          echo "The current directory is $PWD"
 
       - name: Check out code
         uses: actions/checkout@v3
