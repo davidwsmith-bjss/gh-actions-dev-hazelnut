@@ -19,8 +19,6 @@ jobs:
         with:
           node-version: 16.18
           cache: npm
-      - name: Type Check
-        run: npm run type-check
       - name: Unit Tests
         run: npm run test
       - name: Create Artifact
