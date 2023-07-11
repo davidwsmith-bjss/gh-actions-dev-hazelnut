@@ -38,15 +38,22 @@ jobs:
         run: |
           npm install -g cdk ts-node typescript
 
-      - name: Synth CDK
-        run: |
-          cdk synth --verbose \
-          --app "ts-node bootstrap/bin/helloworld.ts" 
-          --output ./bootstrap/cdk.out
+      - name: cdk deploy
+        uses: arnaskro/aws-cdk-v2-github-actions@v2.3.0
+        with:
+         cdk_subcommand: 'deploy'
+         cdk_args: '--require-approval never'
+         actions_comment: false
 
-      - name: Deploy CDK
-        run: |
-          cdk deploy --app ./bootstrap/cdk.out --require-approval never
+#      - name: Synth CDK
+#       run: |
+#          cdk synth --verbose \
+#          --app "ts-node bootstrap/bin/helloworld.ts"
+#          --output ./bootstrap/cdk.out
+
+ #     - name: Deploy CDK
+ #       run: |
+ #         cdk deploy --verbose --app ./bootstrap/cdk.out --require-approval never
 #  - name: cdk deploy
     #    working-directory: /Users/david.smith/WebstormProjects/gh-actions-dev-hazelnut/bootstrap
     #    run: |
