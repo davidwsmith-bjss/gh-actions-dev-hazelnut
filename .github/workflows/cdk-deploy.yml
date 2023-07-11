@@ -16,6 +16,9 @@ jobs:
   aws_cdk:
     runs-on: ubuntu-latest
     steps:
+      - name: Print current directory
+        run: echo "The current directory is $GITHUB_WORKSPACE"
+
       - name: Check out code
         uses: actions/checkout@v3
         with:
@@ -36,4 +39,5 @@ jobs:
 
       - name: cdk deploy
         run: |
+          echo "The current directory is $GITHUB_WORKSPACE"
           cdk deploy --verbose --app "ts-node bootstrap/bin/helloworld.ts"
