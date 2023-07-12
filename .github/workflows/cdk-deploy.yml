@@ -48,6 +48,6 @@ jobs:
  #       run: |
  #         cdk deploy --verbose --app ./bootstrap/cdk.out --require-approval never
       - name: cdk deploy
-        working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
+ #       working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
         run: |
           cdk deploy --verbose --app "ts-node bin/helloworld.ts"
