@@ -9,7 +9,6 @@ env:
 permissions:
   id-token: write # This is required for requesting the ODIC JSON web token (JWT)
   contents: read # This is required for actions/checkout
-  security-events: write
   actions: read
 jobs:
   aws_cdk:
@@ -50,4 +49,4 @@ jobs:
       - name: cdk deploy
  #       working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
         run: |
-          cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/shuffle.ts"
+          cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/s3-bucket.ts"
