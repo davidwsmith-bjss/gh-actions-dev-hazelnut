@@ -1,3 +1,5 @@
+import * as cdk from "aws-cdk-lib";
+
 const shuffle = <T>(array: T[]) => {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -14,3 +16,6 @@ const shuffledObjects = shuffle(users);
 
 console.log(shuffledArray);
 console.log(shuffledObjects);
+
+const app = new cdk.App();
+app.synth();
