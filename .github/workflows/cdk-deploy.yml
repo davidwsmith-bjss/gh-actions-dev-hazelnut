@@ -50,4 +50,4 @@ jobs:
       - name: cdk deploy
  #       working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
         run: |
-          cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/helloworld.ts"
+          cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/http.ts"
