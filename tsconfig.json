@@ -19,5 +19,6 @@
         "strictPropertyInitialization": false,
         "typeRoots": ["./node_modules/@types"]
 },
+    "include": ["bootstrap/bin/*.ts", "bootstrap/lib/*.ts"],
     "exclude": ["node_modules"]
 }
