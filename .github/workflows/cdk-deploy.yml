@@ -35,7 +35,7 @@ jobs:
       # Install cdk, typescript, and ts-node
       - name: install cdk, typescript, and ts-node
         run: |
-          npm install -g cdk ts-node typescript aws-cdk-lib@^2.87.0 textlint-rule-no-todo@^2.0.1 textlint@^13.3.2
+          npm install -g cdk ts-node typescript aws-cdk-lib@2.87.0 textlint-rule-no-todo@2.0.1 textlint@13.3.3
           which tsc cdk
           npm ls | grep -E "node|cdk-lib|type"
 #      - name: Synth CDK
