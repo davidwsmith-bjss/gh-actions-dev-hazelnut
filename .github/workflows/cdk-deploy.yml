@@ -35,8 +35,9 @@ jobs:
       # Install cdk, typescript, and ts-node
       - name: install cdk, typescript, and ts-node
         run: |
-          npm install -g cdk ts-node typescript
-
+#          npm install -g cdk ts-node typescript aws-cdk-lib
+          which tsc cdk
+          npm ls | grep -E "node|cdk-lib|type"
 #      - name: Synth CDK
 #       run: |
 #          cdk synth --verbose \
@@ -49,4 +50,4 @@ jobs:
       - name: cdk deploy
  #       working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
         run: |
-          cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/s3-bucket.ts"
+          cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/s3-bucket.ts" --require-approval never
