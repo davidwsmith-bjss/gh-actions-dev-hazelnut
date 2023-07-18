@@ -39,16 +39,14 @@ jobs:
           which npm
           npm install -g cdk ts-node typescript --verbose
           which cdk ts-node
+      # Install aws-cdk-lib, textlint-rule-no-todo, and textlint
+      - name: install aws-cdk-lib, textlint-rule-no-todo, and textlint
+        run: |  
+          pwd
           npm install -g aws-cdk-lib@^2.87.0 textlint-rule-no-todo@^2.0.1 textlint@^13.3.2 --include=dev --verbose
-#      - name: Synth CDK
-#       run: |
-#          cdk synth --verbose \
-#          --app "ts-node bootstrap/bin/helloworld.ts"
-#          --output ./bootstrap/cdk.out
-
- #     - name: Deploy CDK
- #       run: |
- #         cdk deploy --verbose --app ./bootstrap/cdk.out --require-approval never
+      - name: print installed Node.js package
+        run: |
+          npm ls
       - name: cdk deploy
  #       working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
         run: |
