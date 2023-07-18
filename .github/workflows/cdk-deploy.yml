@@ -49,7 +49,7 @@ jobs:
  #         npm ls
       - name: npm install
         run: |
-          npm ci --dev
+          npm ci --include=dev
       - name: cdk deploy
  #       working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
         run: |
