@@ -5,6 +5,12 @@ on:
 env:
   AWS_REGION: "eu-west-2"
   AWS_ACCOUNT_DEV: "679289103098"
+  ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+  ARTIFACTORY_ACCESSTOKEN: ${{ secrets.ARTIFACTORY_ACCESSTOKEN }}
+  ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
+  NPM_ARTIFACTORY_URL: ${{ secrets.NPM_ARTIFACTORY_URL }}
+  NPM_ARTIFACTORY_ACCESSTOKEN: ${{ secrets.NPM_ARTIFACTORY_ACCESSTOKEN }}
+
 # permissions can be added at job level or workflow level
 permissions:
   id-token: write # This is required for requesting the ODIC JSON web token (JWT)
@@ -23,6 +29,19 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: Set Node.js 16.20
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.20.0"
+
+      - name: Install node dependencies
+        run: |
+          npm config set //${{ env.NPM_ARTIFACTORY_URL }}/:_auth '${{ env.NPM_ARTIFACTORY_ACCESSTOKEN }}'
+          npm config set strict-ssl false
+          npm config set email ${{ env.ARTIFACTORY_USERNAME }}@metoffice.gov.uk
+          npm config set registry https://${{ env.NPM_ARTIFACTORY_URL }}/npm
+          npm ci --include=dev
 
       # Configure AWS credentials
       - name: configure AWS credentials
