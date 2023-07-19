@@ -54,12 +54,11 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       # Install cdk, typescript, and ts-node
-  #    - name: install cdk, typescript, and ts-node
-  #      run: |
-  #        pwd
-  #        which npm
-  #        npm install -g cdk ts-node typescript --verbose
-  #        which cdk ts-node
+      - name: install cdk, typescript, and ts-node
+        run: |
+          which npm
+          npm install -g cdk@^2.87.0 --include=dev --verbose
+          which cdk ts-node
       # Install aws-cdk-lib, textlint-rule-no-todo, and textlint
   #   - name: install aws-cdk-lib, textlint-rule-no-todo, and textlint
   #      run: |
@@ -70,8 +69,8 @@ jobs:
  #         npm ls
       - name: npm install
         run: |
-          npm ci --include=dev
+          npm ci --include=dev --verbose
       - name: cdk deploy
  #       working-directory: /Users/david.smith/git/gh-actions-dev-hazelnut/bootstrap
         run: |
-          cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/s3-bucket.ts" --require-approval never
+          cdk diff --verbose --app "npx ts-node ./bootstrap/bin/s3-bucket.ts" --require-approval never
