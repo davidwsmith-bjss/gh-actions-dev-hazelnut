@@ -20,15 +20,18 @@ jobs:
   aws_cdk:
     runs-on: ubuntu-latest
     steps:
-      - name: Print current directory
-        run: |
-          echo "The current directory is $GITHUB_WORKSPACE"
-          echo "The current directory is $PWD"
-
       - name: Check out code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: Lint code base
+        uses: github/super-linter@v5
+        env:
+            VALIDATE_ALL_CODEBASE: false
+            DISABLE_ERRORS: true
+            DEFAULT_BRANCH: main
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set Node.js 16.20
         uses: actions/setup-node@v3
