@@ -37,8 +37,10 @@ jobs:
 
       - name: Install node dependencies
         run: |
-          npm config set //${{ env.NPM_ARTIFACTORY_URL }}/:_auth '${{ env.NPM_ARTIFACTORY_ACCESSTOKEN }}'
+          npm config set //${{ env.NPM_ARTIFACTORY_URL }}/:_auth='${{ env.NPM_ARTIFACTORY_ACCESSTOKEN }}'
           npm config set strict-ssl false
+          npm config set always-auth true
+          npm config set unsafe-perm false
           npm config set email ${{ env.ARTIFACTORY_USERNAME }}@metoffice.gov.uk
           npm config set registry https://${{ env.NPM_ARTIFACTORY_URL }}/npm
           npm ci --include=dev
