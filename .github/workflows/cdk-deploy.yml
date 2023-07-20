@@ -52,7 +52,7 @@ jobs:
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2.2.0
         with:
-          role-to-assume: arn:aws:iam::${{ GREENFIELD_AWS_ACCOUNT }}:role/ODICGitHubActionsDeployRole
+          role-to-assume: arn:aws:iam::${{ env.GREENFIELD_AWS_ACCOUNT }}:role/ODICGitHubActionsDeployRole
           role-session-name: odic-github
           aws-region: ${{ env.AWS_REGION }}
 
