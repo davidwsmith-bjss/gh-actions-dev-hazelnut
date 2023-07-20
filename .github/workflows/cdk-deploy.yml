@@ -4,7 +4,7 @@ on:
   push:
 env:
   AWS_REGION: "eu-west-2"
-  AWS_ACCOUNT: "441258556278"
+  GREENFIELD_AWS_ACCOUNT: "679289103098"
   ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
   ARTIFACTORY_ACCESSTOKEN: ${{ secrets.ARTIFACTORY_ACCESSTOKEN }}
   ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
@@ -52,7 +52,7 @@ jobs:
       - name: configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2.2.0
         with:
-          role-to-assume: arn:aws:iam::441258556278:role/ODICGitHubActionsDeployRole
+          role-to-assume: arn:aws:iam::${{ GREENFIELD_AWS_ACCOUNT }}:role/ODICGitHubActionsDeployRole
           role-session-name: odic-github
           aws-region: ${{ env.AWS_REGION }}
 
