@@ -1,4 +1,4 @@
-name: CDK Deploy
+name: CDK Deploy; Repository Dispatch Receiver
 
 on:
   push:
