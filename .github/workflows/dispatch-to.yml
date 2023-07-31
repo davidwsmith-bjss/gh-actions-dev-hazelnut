@@ -1,13 +1,15 @@
 name: Dispatch Receiver
 
-on: [repository_dispatch]
+on:
+  repository_dispatch:
+  push:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: dispatch trigger
+      - name: Dispatch trigger
         if: github.event.action == "YOUR_EVENT_TYPE"
         run: |
           echo "repository_dispatch triggered"
