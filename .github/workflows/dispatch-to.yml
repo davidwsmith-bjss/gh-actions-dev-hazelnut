@@ -2,7 +2,6 @@ name: Dispatch Receiver
 
 on:
   repository_dispatch:
-    types: repository-dispatch-test
 
 jobs:
   build:
