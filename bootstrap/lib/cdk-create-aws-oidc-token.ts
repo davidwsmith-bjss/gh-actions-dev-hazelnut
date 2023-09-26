@@ -58,7 +58,6 @@ export class GitHubStack extends cdk.Stack {
     }
 }
 
-
 const app = new cdk.App();
 new GitHubStack(app, 'dsmithGitHubOpenIDConnect', {
     deployRole: 'OIDCGitHubDeployRole',
