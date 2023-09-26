@@ -31,7 +31,7 @@ jobs:
       - name: Bootstrap
         run: cd bootstrap
       - name: CDK synth
-        run: npx cdk synth --app "npx --prefer-ts-exts lib/odic.ts" --output "cdk.out"
+        run: npx cdk synth --app "npx --prefer-ts-exts lib/oidc.ts" --output "cdk.out"
       - name: CDK deploy
         run: npx cdk deploy --all --app "bootstrap/cdk.out" --require-approval never
       # Hello from AWS: WhoAmI
