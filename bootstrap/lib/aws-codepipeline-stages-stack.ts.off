@@ -1,0 +1,82 @@
+import * as cdk from 'aws-cdk-lib/core';
+import * as codepipeline from 'aws-cdk-lib/aws-codepipeline';
+import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions';
+import * as codebuild from 'aws-cdk-lib/aws-codebuild';
+import * as codedeploy from 'aws-cdk-lib/aws-codedeploy';
+import {Construct} from 'constructs';
+import { CfnOutput } from 'aws-cdk-lib'
+
+export class AWSSecretCodePipelineStack extends cdk.Stack {
+    constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+        super(scope, id, props);
+
+        const pipeline = new codepipeline.Pipeline(this, 'DSmithCDKPipeline', {
+            // Pipeline properties...
+        });
+
+        const sourceOutput = new codepipeline.Artifact();
+        const sourceAction = new codepipeline_actions.GitHubSourceAction({
+            actionName: 'GitHub',
+            owner: 'MetOffice',
+            repo: 'dsmith-gh-actions-dev-pecan',
+            branch:'SWN-3000-github-actions-dev',
+            // A GitHub OAuth token to use for authentication
+            oauthToken: cdk.SecretValue.secretsManager('swx-github-token'),
+            output: sourceOutput,
+        });
+
+        // add GitHub source stage
+        pipeline.addStage({
+            stageName: 'Source',
+            actions: [sourceAction],
+        });
+
+        const project = new codebuild.PipelineProject(this, 'DSmithCDKCodePipelineProject', {
+            // Project properties...
+        });
+
+        const buildOutput = new codepipeline.Artifact();
+        const buildAction = new codepipeline_actions.CodeBuildAction({
+            actionName: 'CodeBuild',
+            project,
+            input: sourceOutput,
+            outputs: [buildOutput],
+            // Other action properties...
+        });
+
+        // add code build stage
+        pipeline.addStage({
+            stageName: 'Build',
+            actions: [buildAction],
+        });
+
+        const deployApplication = new codedeploy.ServerApplication(this, 'DSmithCDKCodePipelineApplication', {
+            // Application properties...
+        });
+
+        const deployGroup = new codedeploy.ServerDeploymentGroup(this, 'DSmithCDKCodePipelineDeploymentGroup', {
+            application: deployApplication,
+            // Deployment group properties...
+        });
+
+        const deployAction = new codepipeline_actions.CodeDeployServerDeployAction({
+            actionName: 'CodeDeploy',
+            input: buildOutput,
+            deploymentGroup: deployGroup,
+            // Other action properties...
+        });
+
+        // add deploy stage
+        pipeline.addStage({
+            stageName: 'Deploy',
+            actions: [deployAction],
+        });
+
+        // add output
+        new CfnOutput(this, 'pipelineName', {
+            value: pipeline.pipelineName,
+            description: 'The name of the AWS CodePipeline pipeline',
+            exportName: 'DSmithCDKPipeline',
+        })
+    }
+}

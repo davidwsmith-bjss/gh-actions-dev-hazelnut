@@ -6,16 +6,16 @@ on:
 
 env:
   AWS_REGION: "eu-west-2"
-  GREENFIELD_AWS_ACCOUNT: "679289103098"
+  AWS_ACCOUNT: "441258556278"
   ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
   ARTIFACTORY_ACCESSTOKEN: ${{ secrets.ARTIFACTORY_ACCESSTOKEN }}
   ARTIFACTORY_URL: ${{ secrets.ARTIFACTORY_URL }}
   NPM_ARTIFACTORY_URL: ${{ secrets.NPM_ARTIFACTORY_URL }}
   NPM_ARTIFACTORY_ACCESSTOKEN: ${{ secrets.NPM_ARTIFACTORY_ACCESSTOKEN }}
 
-# permissions can be added at job level or workflow level
+# permission can be added at job level or workflow level
 permissions:
-  id-token: write # This is required for requesting the ODIC JSON web token (JWT)
+  id-token: write # This is required for requesting the OIDC JSON web token (JWT)
   contents: read # This is required for actions/checkout
   actions: read
 jobs:
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.0.0
         with:
           fetch-depth: 0
 
@@ -52,10 +52,10 @@ jobs:
 
       # Configure AWS credentials
       - name: configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2.2.0
+        uses: aws-actions/configure-aws-credentials@v4.0.0
         with:
-          role-to-assume: arn:aws:iam::${{ env.GREENFIELD_AWS_ACCOUNT }}:role/ODICGitHubDeployRole
-          role-session-name: odic-github
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT }}:role/ODICGitHubActionsDeployRole
+          role-session-name: oidc-github-actions
           aws-region: ${{ env.AWS_REGION }}
 
       # Install cdk
@@ -63,7 +63,10 @@ jobs:
         run: |
           npm install -g cdk@^2.87.0 --include=dev --verbose
 
-      # CDK deploy
+      # Install typescript and ts-node
+      - name: install typescript and ts-node
+
+      # cdk deploy
       - name: cdk deploy
         run: |
           cdk deploy --verbose --app "npx ts-node ./bootstrap/bin/s3-bucket.ts" --require-approval never
