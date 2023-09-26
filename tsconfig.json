@@ -1,9 +1,8 @@
 {
     "compilerOptions": {
-    "target": "ES2018",
+        "target": "ES2018",
         "module": "commonjs",
-        "lib": ["es2018"],
-        "declaration": true,
+        "lib": ["es2020", "DOM"],
         "strict": true,
         "noImplicitAny": true,
         "strictNullChecks": true,
@@ -19,5 +18,6 @@
         "strictPropertyInitialization": false,
         "typeRoots": ["./node_modules/@types"]
 },
+    "include": ["bootstrap/bin/*.ts", "bootstrap/lib/*.ts"],
     "exclude": ["node_modules"]
 }

@@ -1,0 +1,13 @@
+name: Dispatch Receiver
+
+on:
+  repository_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Dispatch trigger
+        run: |
+          echo "repository_dispatch triggered"

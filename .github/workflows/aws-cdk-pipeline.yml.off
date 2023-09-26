@@ -1,0 +1,25 @@
+name: CDK Pipeline
+
+on:
+  push:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo1
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy CDK stack
+        run: npx cdk deploy --all --require-approval never
+        env:
+          REPO2_ACCESS_TOKEN: ${{ secrets.REPO2_ACCESS_TOKEN }}
