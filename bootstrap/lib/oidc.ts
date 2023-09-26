@@ -61,13 +61,17 @@ export class GitHubStack extends cdk.Stack {
 
 const app = new cdk.App();
 new GitHubStack(app, 'dsmithGitHubOpenIDConnect', {
-    deployRole: 'ODICGitHubDeployRole',
+    deployRole: 'OIDCGitHubDeployRole',
     repositoryConfig: [
+<<<<<<< HEAD:bootstrap/lib/oidc.ts
 <<<<<<< HEAD:bootstrap/lib/oidc.ts
         { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'ref:refs/heads/main' },
         { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-hazelnut', filter: 'ref:refs/heads/main' },
 =======
         { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'refs/heads/SWN-300-github-actions' },
+=======
+        { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-pecan', filter: 'refs/heads/origin/SWN-300-github-actions' },
+>>>>>>> 5990f58 (corrected to oidc):bootstrap/lib/odic.ts
         { owner: 'davidwsmith-bjss', repo: 'gh-actions-dev-hazelnut', filter: 'refs/heads/main' },
 >>>>>>> eceeb03 (cdk.our folder under bootstrap folder; changes installs to:):bootstrap/lib/odic.ts
     ],
