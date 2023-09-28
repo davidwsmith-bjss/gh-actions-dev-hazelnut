@@ -36,4 +36,4 @@ jobs:
       # cdk deploy
       - name: cdk deploy
         run: |
-          cdk deploy --verbose --app "ts-node bootstrap/bin/helloworld.ts"
+          cdk deploy --verbose --app "ts-node bootstrap/bin/create-aws-s3-bucket.ts"

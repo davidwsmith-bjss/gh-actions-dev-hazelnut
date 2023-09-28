@@ -7,6 +7,9 @@ on:
 env:
   BUCKET_NAME : "cdk-hnb659fds-assets-679289103098-eu-west-2"
   AWS_REGION : "eu-west-2"
+  AWS_ACCOUNT: ""
+  DEPLOY_ROLE: ""
+
 # permission can be added at job or workflow level
 permissions:
   id-token: write   # This is required for requesting the ODIC JSON web token (JWT)
@@ -19,13 +22,13 @@ jobs:
     steps:
     # Repo git cloning
       - name: Git clone the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.0.0
         with:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 2
     # Add linting
       - name: Lint Code Base
-        uses: github/super-linter@v5
+        uses: github/super-linter@latest
         env:
           VALIDATE_ALL_CODEBASE: false
           DISABLE_ERRORS: true
@@ -33,10 +36,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Configure AWS credentials
       - name: configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2.2.0
+        uses: aws-actions/configure-aws-credentials@v4.0.0
         with:
-          role-to-assume: arn:aws:iam::679289103098:role/ODICGitHubDeployRole
-          role-session-name: odic-s3-bucket
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT }}:role/${{ env.DEPLOY_ROLE }}
+          role-session-name: oidc-s3-bucket
           aws-region: ${{ env.AWS_REGION }}
       # Upload a file to AWS S3
       - name:  Copy index.html to S3
